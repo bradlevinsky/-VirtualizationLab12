@@ -34,3 +34,23 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      # Run tests:
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          python -m unittest discover
+
+      # Build code
+      - name: Build the application
+        run: |
+          echo " Building the app..."
+          npm install
+          npm run build
+
+      # setup-node
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+

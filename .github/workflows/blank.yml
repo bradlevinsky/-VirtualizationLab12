@@ -39,8 +39,14 @@ jobs:
       - name: Run tests
         run: |
           echo "Running tests..."
-          python -m unittest discover
+          python -m unittest discover -s .github/workflows -p "tests.py"
 
+      # setup-node
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
       # Build code
       - name: Build the application
         run: |
@@ -48,9 +54,5 @@ jobs:
           npm install
           npm run build
 
-      # setup-node
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+
 

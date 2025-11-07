@@ -39,20 +39,23 @@ jobs:
       - name: Run tests
         run: |
           echo "Running tests..."
-          python -m unittest discover -s .github/workflows -p "tests.py"
+          python3 -m unittest discover -s .github/workflows -p "tests.py"
 
       # setup-node
       - name: Set up Node.js
+        if: hashFiles('package.json') != ''
         uses: actions/setup-node@v3
         with:
           node-version: '16'
           
       # Build code
       - name: Build the application
+        if: hashFiles('package.json') != ''
         run: |
           echo " Building the app..."
           npm install
           npm run build
+
 
 
 
